@@ -44,3 +44,4 @@ var x = process.argv[2];
     player.damage();
     player.move(7, 8);
     console.log(player.toString());
+ 
