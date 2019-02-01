@@ -1,47 +1,26 @@
-class Character{
-	constructor(x,y){
-	this.x = x;
-	this.y = y;
-	this.health_ = 100;
-	}
-	
-	damage(){
-		this.health_ = this.health_ - 10;
-	}
+"use strict";
+// This variable `a` should be accessible outside of the block scope.
+var a = 5;
 
-	getHealth(){
-		return this.health_;
-	}
+// This variable `b` should not be reassignable.
+const b = process.argv[2];
 
-	toString(){
-		return "x: " + this.x + " y: " + this.y + " health: " + this.getHealth();
-	}
+if (a === 5) {
+  // This variable `c` should only be valid in this block.
+  let c = 4;
+  console.log(c); // 4
 
+  // This variable `b` should only be valid in this block and should not be reassignable.
+  const b = 8;
+  console.log(b); // 8
 }
 
-class Player extends Character{
-	constructor(x,y,name){
-		super(x,y);
-		this.name = name;
-	}
-	move(dx,dy){
-		this.x += dx;
-		this.y += dy;
-	}
-	toString(){
-//		return "name: " + this.name + " " +"x: " + this.x + " y: " + this.y+" health: " + this.getHealth();
-		return `name: ${this.name} ${super.toString()}`;
-	}
-	
+console.log(a); // 5
+console.log(b);
+try {
+  // Trying to change the value of `c`
+  c = 1000;
+} catch (e) {
+  // but an `c is not defined` error should occur.
+  console.log(e);
 }
-var x = process.argv[2];
-    var y = process.argv[3];
-    var name = process.argv[4];
-    var character = new Character(+x, +y);
-    character.damage();
-    console.log(character.toString());
-    var player = new Player(+x, +y, name);
-    player.damage();
-    player.move(7, 8);
-    console.log(player.toString());
- 
